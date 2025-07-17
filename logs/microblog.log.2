@@ -1,0 +1,133 @@
+2025-06-29 16:01:52,064 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:51]
+2025-06-29 16:05:02,899 ERROR: Exception on /edit_profile [POST] [in /home/david/projects/microblog/venv/lib/python3.12/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/app/routes.py", line 17, in edit_profile
+    if form.validate_on_submit():
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask_wtf/form.py", line 86, in validate_on_submit
+    return self.is_submitted() and self.validate(extra_validators=extra_validators)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/wtforms/form.py", line 330, in validate
+    return super().validate(extra)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/wtforms/form.py", line 147, in validate
+    if not field.validate(self, extra):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/wtforms/fields/core.py", line 234, in validate
+    stop_validation = self._run_validation_chain(form, chain)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/wtforms/fields/core.py", line 254, in _run_validation_chain
+    validator(form, self)
+  File "/home/david/projects/microblog/app/forms.py", line 51, in validate_username
+    if user is not None:
+       ^^^^
+UnboundLocalError: cannot access local variable 'user' where it is not associated with a value
+2025-06-29 16:06:05,472 ERROR: Exception on /edit_profile [POST] [in /home/david/projects/microblog/venv/lib/python3.12/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/app/routes.py", line 17, in edit_profile
+    if form.validate_on_submit():
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask_wtf/form.py", line 86, in validate_on_submit
+    return self.is_submitted() and self.validate(extra_validators=extra_validators)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/wtforms/form.py", line 330, in validate
+    return super().validate(extra)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/wtforms/form.py", line 147, in validate
+    if not field.validate(self, extra):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/wtforms/fields/core.py", line 234, in validate
+    stop_validation = self._run_validation_chain(form, chain)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/wtforms/fields/core.py", line 254, in _run_validation_chain
+    validator(form, self)
+  File "/home/david/projects/microblog/app/forms.py", line 51, in validate_username
+    if user is not None:
+       ^^^^
+UnboundLocalError: cannot access local variable 'user' where it is not associated with a value
+2025-06-29 16:06:59,027 ERROR: Exception on /edit_profile [POST] [in /home/david/projects/microblog/venv/lib/python3.12/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/app/routes.py", line 17, in edit_profile
+    if form.validate_on_submit():
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/flask_wtf/form.py", line 86, in validate_on_submit
+    return self.is_submitted() and self.validate(extra_validators=extra_validators)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/wtforms/form.py", line 330, in validate
+    return super().validate(extra)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/wtforms/form.py", line 147, in validate
+    if not field.validate(self, extra):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/wtforms/fields/core.py", line 234, in validate
+    stop_validation = self._run_validation_chain(form, chain)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/david/projects/microblog/venv/lib/python3.12/site-packages/wtforms/fields/core.py", line 254, in _run_validation_chain
+    validator(form, self)
+  File "/home/david/projects/microblog/app/forms.py", line 51, in validate_username
+    if user is not None:
+       ^^^^
+UnboundLocalError: cannot access local variable 'user' where it is not associated with a value
+2025-06-29 16:08:57,934 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:51]
+2025-06-29 16:08:58,844 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:51]
+2025-06-29 16:15:51,931 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:51]
+2025-06-29 16:16:34,852 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:51]
+2025-06-29 16:16:35,660 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:51]
+2025-06-29 18:25:45,640 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:50]
+2025-06-29 18:25:46,103 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:50]
+2025-06-30 17:24:39,728 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:50]
+2025-06-30 17:58:26,754 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:50]
+2025-06-30 17:58:27,984 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:50]
+2025-06-30 18:05:21,873 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:50]
+2025-06-30 18:08:16,244 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:50]
+2025-06-30 18:09:00,083 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:50]
+2025-06-30 18:10:26,556 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:50]
+2025-06-30 18:10:27,391 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:50]
+2025-06-30 18:21:04,540 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:50]
+2025-06-30 18:22:53,972 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:50]
+2025-06-30 18:22:54,945 INFO: Microblog startup [in /home/david/projects/microblog/app/__init__.py:50]
