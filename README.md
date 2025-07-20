@@ -1,6 +1,6 @@
 # 📝 Microblog (Chapter 14 Baseline)
 
-This repository contains a working implementation of **Chapter 14** from Miguel Grinberg’s Flask Mega-Tutorial. It includes foundational features like user authentication, profile pages, database models, and post creation.
+This repository contains a working implementation up through and including **Chapter 14** from Miguel Grinberg’s Flask Mega-Tutorial. It includes foundational features like user authentication, profile pages, database models, and post creation. Chapter 15 will be added next and then the rest of the chapters up through and including chapter 23 will be added.
 
 ## 📦 Structure Overview
 
