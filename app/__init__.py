@@ -2,6 +2,7 @@ import logging
 import os
 from logging.handlers import RotatingFileHandler, SMTPHandler
 
+from elasticsearch import Elasticsearch
 from flask import Flask, current_app, request
 from flask_babel import Babel
 from flask_babel import lazy_gettext as _l
@@ -38,6 +39,17 @@ def create_app(config_class=Config):
     mail.init_app(app)
     moment.init_app(app)
     babel.init_app(app, locale_selector=get_locale)
+    # app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
+    # if app.config['ELASTICSEARCH_URL'] else None
+    if app.config["ELASTICSEARCH_URL"]:
+        app.elasticsearch = Elasticsearch(
+            [app.config["ELASTICSEARCH_URL"]],
+            request_timeout=1,
+            max_retries=0,
+            retry_on_timeout=False,
+        )
+    else:
+        app.elasticsearch = None
 
     from app.errors import bp as errors_bp
 
