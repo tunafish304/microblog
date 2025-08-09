@@ -8,7 +8,7 @@ from flask_login import current_user, login_required, login_user, logout_user
 from langdetect import LangDetectException, detect
 
 from app import app, db
-from app.email import send_password_reset_email
+from app.auth.mailer import send_password_reset_email
 from app.forms import (
     EditProfileForm,
     EmptyForm,

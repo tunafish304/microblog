@@ -1,47 +1,39 @@
-from flask import current_app
+import os
 
-# from elastic_transport import ConnectionTimeout
+from whoosh.fields import ID, TEXT, Schema
+from whoosh.index import create_in, open_dir
+from whoosh.qparser import MultifieldParser
 
-
-# def add_to_index(index, model):
-# if not current_app.elasticsearch:
-#    return
-# payload = {}
-# for field in model.__searchable__:
-#    payload[field] = getattr(model, field)
-# current_app.elasticsearch.index(index=index, id=model.id, document=payload)
-
-
-def add_to_index(index, model):
-    es = current_app.elasticsearch
-    if not es:
-        return
-    try:
-        if not es.ping():  # Make a lightweight test connection
-            current_app.logger.warning(
-                "Elasticsearch client exists but is unreachable."
-            )
-            return
-        payload = {field: getattr(model, field) for field in model.__searchable__}
-        es.index(index=index, id=model.id, document=payload)
-    except Exception as e:
-        current_app.logger.error(f"Search indexing failed: {e}")
+# Define schema
+schema = Schema(id=ID(stored=True), body=TEXT)
+# Ensure index directory exists
+index_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), "whoosh_index")
+if not os.path.exists(index_dir):
+    os.mkdir(index_dir)
+# Create or open index
+if not os.listdir(index_dir):
+    ix = create_in(index_dir, schema)
+else:
+    ix = open_dir(index_dir)
 
 
-def remove_from_index(index, model):
-    if not current_app.elasticsearch:
-        return
-    current_app.elasticsearch.delete(index=index, id=model.id)
+def add_to_index(model, post):
+    writer = ix.writer()
+    writer.add_document(id=str(post.id), body=post.body)
+    writer.commit()
 
 
-def query_index(index, query, page, per_page):
-    if not current_app.elasticsearch:
-        return [], 0
-    search = current_app.elasticsearch.search(
-        index=index,
-        query={"multi_match": {"query": query, "fields": ["*"]}},
-        from_=(page - 1) * per_page,
-        size=per_page,
-    )
-    ids = [int(hit["_id"]) for hit in search["hits"]["hits"]]
-    return ids, search["hits"]["total"]["value"]
+def remove_from_index(model, post):
+    writer = ix.writer()
+    writer.delete_by_term("id", str(post.id))
+    writer.commit()
+
+
+def query_index(model, query, page, per_page):
+    with ix.searcher() as searcher:
+        parser = MultifieldParser(["body"], schema=ix.schema)
+        myquery = parser.parse(query)
+        results = searcher.search_page(myquery, page, pagelen=per_page)
+        ids = [int(hit["id"]) for hit in results]
+        total = results.total
+    return ids, total
