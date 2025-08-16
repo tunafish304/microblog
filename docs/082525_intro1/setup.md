@@ -1,9 +1,7 @@
 
 ---
 
-## ✅ Final Version — `082525_intro1/setup.md`
 
-```markdown
 # Setup Guide — Intro Class 1 (`082525_intro1`)
 _Tag: setup, onboarding, reproducible, recovery_
 
@@ -15,6 +13,7 @@ Welcome! This guide prepares your development environment for the course. Each s
 _Tag: python, path, reproducible_
 
 - ✅ Download: [https://www.python.org/downloads](https://www.python.org/downloads)
+- ✅ On the first page of the installer make sure "Add to PATH" is checked and then proceed through the installer steps and complete the installation
 - ✅ Verify PATH:  
   ```bash
   python --version
@@ -53,6 +52,7 @@ wsl --shutdown
 _Tag: editor, reproducible_
 
 - ✅ Download: [https://code.visualstudio.com](https://code.visualstudio.com)
+- Open the installer and go through the install steps
 
 ---
 
@@ -61,17 +61,28 @@ _Tag: extensions, reproducible, recovery_
 
 ### Recommended Extensions (CLI install):
 ```bash
-code --install-extension github.copilot
-code --install-extension github.copilot-chat
-code --install-extension github.vscode-pull-request-github
-code --install-extension kevinrose.vsc-python-indent
-code --install-extension ms-python.black-formatter
-code --install-extension ms-python.debugpy
+# Recommended install order for VS Code extensions
+
+# 1. WSL integration
+code --install-extension ms-vscode-remote.remote-wsl
+
+# 2. Core Python stack
 code --install-extension ms-python.python
 code --install-extension ms-python.vscode-pylance
 code --install-extension ms-python.vscode-python-envs
+code --install-extension ms-python.debugpy
+code --install-extension ms-python.black-formatter
+code --install-extension kevinrose.vsc-python-indent
+
+# 3. Copilot tools
+code --install-extension github.copilot
+code --install-extension github.copilot-chat
+
+# 4. GitHub PR extension
+code --install-extension github.vscode-pull-request-github
+
+# 5. Live Server (optional for HTML)
 code --install-extension ritwickdey.liveserver
-code --install-extension ms-vscode-remote.remote-wsl
 ```
 
 > 💡 *Recovery Tip:* If extensions fail to install, try launching VS Code as admin or reinstalling.
@@ -88,44 +99,40 @@ _Tag: recovery, reproducible_
 
 ## [6] Apply Recommended `settings.json`  
 _Tag: reproducible, config_
-
-Create or update:  
-`%APPDATA%\Code\User\settings.json` (Windows)  
-or  
-`~/.config/Code/User/settings.json` (Linux)
-
+ 
+- Use Ctrl+Shft+P to get to the Command Paletter
+- In the drop down list find Preferences: Open User Settings (JSON)
+- Your settings.json file should look like the following json:
+<!--span style="background-color: #fdf6e3;"-->
 ```json
 {
-  // 🧼 Tabs and spacing for clean code
-  "editor.tabSize": 4,
-  "editor.insertSpaces": true,
-
-  // 🧠 Python interpreter path (auto-detects venv if activated)
-  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
-
-  // 🎯 Auto-activate virtual environment
-  "python.terminal.activateEnvironment": true,
-
-  // 🧪 Linting and formatting
-  "python.formatting.provider": "black",
-  "python.linting.enabled": true,
-  "python.linting.pylintEnabled": true,
-
-  // 🧩 VS Code behavior
-  "git.enableSmartCommit": true,
-  "git.confirmSync": false,
-
-  // 🌐 Live server config (for web projects)
-  "liveServer.settings.port": 5500,
-
-  // 🧠 Reduce extension noise
-  "extensions.ignoreRecommendations": false
+  "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
+  "workbench.colorTheme": "GitHub Light High Contrast",
+  "workbench.startupEditor": "none",
+  "[python]": {
+    "editor.formatOnType": true,
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "always",
+      "source.organizeImports": "always"
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "bash",
+	"python.terminal.activateEnvironment": true, 
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  "remote.autoForwardPortsSource": "hybrid",
+  
+	// Optional: Only set if the venv isn't directly in your workspace folder
+	// "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python"
 }
 ```
-
+<!--/span-->
 > 💡 *Recovery Tip:* If settings don’t apply, restart VS Code or check for syntax errors in `settings.json`.
 
 ---
 
-
+</span>
 
