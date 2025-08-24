@@ -26,11 +26,7 @@ _Intro to Flask Project Structure, Routing, and Decorators_
 
 ---
 
-Thanks for catching that, David. That formatting glitch happens when Markdown tables are rendered with ASCII-style borders—some platforms don’t display them cleanly. Let’s switch to **GitHub-flavored Markdown**, which is cleaner and more portable across editors and viewers.
 
-Here’s the corrected version of the **File Roles** section:
-
----
 
 ## 📄 File Roles
 

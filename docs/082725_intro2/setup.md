@@ -9,13 +9,10 @@
 
 ## ✅ Scaffolding `082725_intro2/setup.md`
 
-```markdown
 # Setup Guide — Intro Class 2 (`082725_intro2`)
 _Tag: python, venv, pip, git, reproducible, recovery_
 
 This guide builds on your environment from Intro Class 1. You’ll set up a virtual environment, install packages, manage dependencies, and learn Git basics—including how to undo common mistakes.
-
----
 
 ## [1] Verify Python3 and pip3 in WSL  
 _Tag: python, reproducible_
@@ -32,6 +29,21 @@ sudo apt update
 sudo apt install python3 python3-pip
 ```
 
+## [1.5] Install Git (if missing)  
+_Tag: git, reproducible, recovery_
+
+Run inside WSL:  
+```bash
+git --version
+```
+
+> 💡 *Recovery Tip:* If Git is not found, install it with:  
+```bash
+sudo apt update
+sudo apt install git
+```
+
+> 🎓 *Student Tip:* Git is a system-level version control tool. You’ll use it to track changes, undo mistakes, and collaborate safely across projects.
 ---
 
 ## [2] Create and Activate Virtual Environment  
@@ -116,5 +128,3 @@ git log
 You’ll configure GitHub, cache your PAT, and explore Linux commands and curl cheat.sh.
 
 ```
-
----

@@ -1,19 +1,8 @@
 
-1. **Create GitHub repo** (visible, motivating)  
-2. **Initialize local repo and connect**  
-3. **Configure Git identity** (now that they’ve seen where it matters)  
-4. **Generate PAT and authenticate**  
-5. **Cache PAT (optional)**  
-6. **Push to GitHub**  
-7. **Linux commands**  
-8. **`curl cheat.sh`**
-
 ---
 
-## 📁 `090125_intro3/setup.md` — Final Refactor
-
-```markdown
-# Setup Guide — Intro Class 3 (`090125_intro3`)
+## 📁 `090125_intro3/setup.md` 
+# Setup Guide — Intro Class 3 (`090125_intro3`)  
 _Tag: github, linux, curl, recovery, reproducible_
 
 This guide connects your local Git setup to GitHub, configures authentication, and introduces essential Linux commands. You’ll also learn how to use `curl cheat.sh` for fast, searchable command-line help.
@@ -42,6 +31,11 @@ git init
 git remote add origin https://github.com/your-username/intro3-dev-env.git
 ```
 
+- `git remote add`: Adds a new remote connection.
+- `origin`: This is just a conventional name (like a nickname) for the remote repo. You could name it anything, but `origin` is the default.
+- `https://github.com/...`: The actual URL of the remote repository.
+- `git push origin main` (or whatever your branch is called. In this example it's called main) will push your local commits to that remote repo.
+
 > 🎓 *Student Tip:* Use `git status` to confirm your repo is tracking changes.
 
 ---
@@ -58,20 +52,67 @@ git config --global user.email "your@email.com"
 
 ---
 
-## [4] Generate GitHub PAT and Authenticate  
-_Tag: github, auth, recovery_
+## [4] GitHub Setup – Microblog Edition  
+_Tag: github, auth, recovery, reproducible_
 
-### ✅ Create a Personal Access Token (PAT)
-- Go to [https://github.com/settings/tokens](https://github.com/settings/tokens)
-- Select scopes: `repo`, `workflow`, `read:org`
-- Copy and save your token securely
+This setup gives you secure access to your microblog repo so you can push code and later clone it to PythonAnywhere.
 
-> 🧠 *What Happens Next?*  
-When you push to GitHub, Git will prompt you for your username and password.  
-- Enter your GitHub username  
-- **Paste your PAT** as the password (you won’t see it as you type)
+---
 
-> 💡 *Recovery Tip:* If you see `403` or `authentication failed`, regenerate your PAT and try again.
+### ✅ Step 1: Create Your Microblog Repo
+
+1. Go to: [https://github.com/new](https://github.com/new)
+2. Name your repo: `microblog`
+3. Choose:
+   - Public or private (your choice)
+   - Add a README ✅
+4. Click **Create repository**
+
+---
+
+### 🔐 Step 2: Enable Two-Factor Authentication (2FA)
+
+GitHub requires 2FA to create a token. Set it up now so you're ready.
+
+1. Go to: [https://github.com/settings/security](https://github.com/settings/security)
+2. Click **Enable two-factor authentication**
+3. Choose:
+   - 📱 Authenticator app (recommended)
+   - 📩 SMS (if you prefer)
+4. Save your **recovery codes** somewhere safe
+
+---
+
+### 🔑 Step 3: Create Your Classic Token
+
+1. Go to: [https://github.com/settings/tokens/new?type=classic](https://github.com/settings/tokens/new?type=classic)  
+2. GitHub will ask for your 2FA code
+3. Select these scopes:
+   - ✅ `repo` (access to your microblog repo)
+   - ✅ `workflow` (optional, for GitHub Actions)
+4. Click **Generate token**
+5. Copy your token and save it somewhere safe (you won’t see it again)
+
+> 🎓 *Student Tip:* When Git prompts for login:
+- Enter your GitHub **username**
+- Paste your **token** as the password (you won’t see it as you type)
+
+---
+
+### 🧪 Step 4: Test Your Token (Dry Run)
+
+Use this command to confirm your token works:
+
+```bash
+git ls-remote https://github.com/YOUR-USERNAME/microblog.git
+```
+
+If it returns a list of refs, your token is working.
+
+> 💡 *Recovery Tip:* If GitHub blocks you or asks for 2FA and you’re stuck:
+- Ask your instructor for help
+- Use HTTPS with username/password temporarily
+- You can always come back and finish token setup later
 
 ---
 
@@ -83,7 +124,7 @@ git credential-manager-core configure
 git config --global credential.helper manager-core
 ```
 
-> 🎓 *Student Tip:* This caches your PAT so you won’t be prompted every time.
+> 🎓 *Student Tip:* This caches your token so you won’t be prompted every time.
 
 ---
 
@@ -137,4 +178,4 @@ sudo apt install curl
 ```bash
 curl cheat.sh/python/virtualenv
 ```
----
+

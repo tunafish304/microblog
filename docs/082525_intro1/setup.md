@@ -1,7 +1,4 @@
 
----
-
-
 # Setup Guide — Intro Class 1 (`082525_intro1`)
 _Tag: setup, onboarding, reproducible, recovery_
 
@@ -12,7 +9,7 @@ Welcome! This guide prepares your development environment for the course. Each s
 ## [1] Install Global Python (≥3.11)  
 _Tag: python, path, reproducible_
 
-- ✅ Download: [https://www.python.org/downloads](https://www.python.org/downloads)
+  ✅ Download: [https://www.python.org/downloads](https://www.python.org/downloads)
 - ✅ On the first page of the installer make sure "Add to PATH" is checked and then proceed through the installer steps and complete the installation
 - ✅ Verify PATH:  
   ```bash
@@ -103,7 +100,6 @@ _Tag: reproducible, config_
 - Use Ctrl+Shft+P to get to the Command Paletter
 - In the drop down list find Preferences: Open User Settings (JSON)
 - Your settings.json file should look like the following json:
-<!--span style="background-color: #fdf6e3;"-->
 ```json
 {
   "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
@@ -129,10 +125,6 @@ _Tag: reproducible, config_
 	// "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python"
 }
 ```
-<!--/span-->
 > 💡 *Recovery Tip:* If settings don’t apply, restart VS Code or check for syntax errors in `settings.json`.
 
 ---
-
-</span>
-
