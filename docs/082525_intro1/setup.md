@@ -1,130 +1,83 @@
 
-# Setup Guide — Intro Class 1 (`082525_intro1`)
-_Tag: setup, onboarding, reproducible, recovery_
+# Class 1: Getting Started
 
-Welcome! This guide prepares your development environment for the course. Each step is modular, annotated, and designed to help you recover gracefully if something goes wrong.
+Today we want to go over what we'll be doing all semester and keep it all at a high level.
 
 ---
 
-## [1] Install Global Python (≥3.11)  
-_Tag: python, path, reproducible_
+## 1. Introducing the online tutorial
 
-  ✅ Download: [https://www.python.org/downloads](https://www.python.org/downloads)
-- ✅ On the first page of the installer make sure "Add to PATH" is checked and then proceed through the installer steps and complete the installation
-- ✅ Verify PATH:  
+- As a proof of concept, I have gone through the chapters and created the microblog and deployed it on PythonAnywhere's free tier
+- There will no no out of pocket costs for this deployment or for the transalation service. I have created a custom python module for translation
+- As Yoda said, "There is no try. There is only do."
+
+---
+
+## 2. Browse, Diff, and Zip
+
+- Each chapter has a Browse, Diff, and Zip link for that chapter
+
+---
+
+## 3. Text → Code → Text → Code
+
+- There is a pattern that Miguel uses
+- He discusses a section of code and then he diplays the code
+- We will do as much of the homework as we can in class together
+- Miguel is a master at organization - the blog is a model for any code project
+
+---
+
+## 4. How to turn in homework
+
+- There is a file on Moodle under class materials that explains this
+
+---
+
+## 5. Windows Version Check
+
+- Press `Windows Key + R`, type `winver`, and hit Enter.
+- If you have Windows 11 everything is peachy
+- If you have **Windows 10**, you need version 2004 or later
+
+---
+
+## 6. Python Check
+
+- Open Command Prompt and type:
   ```bash
   python --version
-  where python
   ```
-- 🔁 Recovery: If `python` not found, revisit installer and ensure "Add to PATH" is checked.
+- If Python isn’t installed, we’ll cover it in Class 2.
 
 ---
 
-## [2] Install WSL (Windows Subsystem for Linux)  
-_Tag: environment, reproducible, recovery_
+## 7. What Is MVC?
 
-WSL lets you run a Linux environment inside Windows. For most students, WSL2 will be installed automatically. If your system doesn’t support WSL2, Windows will silently fall back to WSL1—which is fully supported for this course.
-
-### ✅ Install WSL
-Open PowerShell as Administrator:
-```powershell
-wsl --install
-```
-
-### ✅ Verify WSL Version
-```bash
-wsl --list --verbose
-```
-
-> 🎓 *Student Tip:* WSL1 is perfectly fine for this course. You won’t notice any difference unless you're using Docker or advanced Linux features.
-
-### 🔁 Recovery: If WSL Hangs
-```bash
-wsl --shutdown
-```
+- **Model**: Data and logic (e.g., blog posts).
+- **View**: What users see (HTML templates).
+- **Controller**: Routes and actions (Python functions).
 
 ---
 
-## [3] Install VS Code  
-_Tag: editor, reproducible_
+## 8. Walk through of the Microblog on PythonAnywhere
 
-- ✅ Download: [https://code.visualstudio.com](https://code.visualstudio.com)
-- Open the installer and go through the install steps
-
----
-
-## [4] Install VS Code Extensions  
-_Tag: extensions, reproducible, recovery_
-
-### Recommended Extensions (CLI install):
-```bash
-# Recommended install order for VS Code extensions
-
-# 1. WSL integration
-code --install-extension ms-vscode-remote.remote-wsl
-
-# 2. Core Python stack
-code --install-extension ms-python.python
-code --install-extension ms-python.vscode-pylance
-code --install-extension ms-python.vscode-python-envs
-code --install-extension ms-python.debugpy
-code --install-extension ms-python.black-formatter
-code --install-extension kevinrose.vsc-python-indent
-
-# 3. Copilot tools
-code --install-extension github.copilot
-code --install-extension github.copilot-chat
-
-# 4. GitHub PR extension
-code --install-extension github.vscode-pull-request-github
-
-# 5. Live Server (optional for HTML)
-code --install-extension ritwickdey.liveserver
-```
-
-> 💡 *Recovery Tip:* If extensions fail to install, try launching VS Code as admin or reinstalling.
+- Let's check this puppy out and use it to class communications
+- Limited space on a free tier
 
 ---
 
-## [5] Check for Extension Conflicts  
-_Tag: recovery, reproducible_
+## 9. Class 2 Preview: Install Day
 
-- ✅ Open VS Code → `Help > Toggle Developer Tools` → check console for extension errors
-- ✅ Disable conflicting extensions via `Extensions > Installed > Disable`
-
----
-
-## [6] Apply Recommended `settings.json`  
-_Tag: reproducible, config_
- 
-- Use Ctrl+Shft+P to get to the Command Paletter
-- In the drop down list find Preferences: Open User Settings (JSON)
-- Your settings.json file should look like the following json:
-```json
-{
-  "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
-  "workbench.colorTheme": "GitHub Light High Contrast",
-  "workbench.startupEditor": "none",
-  "[python]": {
-    "editor.formatOnType": true,
-    "editor.defaultFormatter": "ms-python.black-formatter",
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true,
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.fixAll": "always",
-      "source.organizeImports": "always"
-    }
-  },
-  "terminal.integrated.defaultProfile.linux": "bash",
-	"python.terminal.activateEnvironment": true, 
-  "python.terminal.activateEnvInCurrentTerminal": true,
-  "remote.autoForwardPortsSource": "hybrid",
-  
-	// Optional: Only set if the venv isn't directly in your workspace folder
-	// "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python"
-}
-```
-> 💡 *Recovery Tip:* If settings don’t apply, restart VS Code or check for syntax errors in `settings.json`.
+- Install Python, VS Code, Git
+- Add extensions to VS Code
+- Install WSL (or fallback to DOS)
 
 ---
+
+## 10. Class 3 Preview: Git & GitHub
+
+- Create a repo
+- Set up 2FA
+- Generate a token
+- Push your first commit
