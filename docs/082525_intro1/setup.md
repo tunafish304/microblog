@@ -62,7 +62,7 @@ Today we want to go over what we'll be doing all semester and keep it all at a h
 
 ## 8. Walk through of the Microblog on PythonAnywhere
 
-- Let's check this puppy out and use it to class communications
+- Let's check this puppy out and use it for class communications
 - Limited space on a free tier
 
 ---
