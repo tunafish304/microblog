@@ -1,8 +1,8 @@
 
-- ✅ Project structure and file roles  
-- 🔁 How `from app import app` works  
-- 🧠 What a decorator is and how it rewrites/wraps a function  
-- 🧵 How the whole Flask app flows
+-  Project structure and file roles  
+-  How `from app import app` works  
+-  What a decorator is  
+-  How the whole Flask app flows
 
 
 # `flask_hello.md`  
@@ -10,7 +10,7 @@ _Intro to Flask Project Structure, Routing, and Decorators_
 
 ---
 
-## 🗂️ Project Structure
+##  Project Structure
 
 ```bash
 090325_microblog_hello/
@@ -28,7 +28,7 @@ _Intro to Flask Project Structure, Routing, and Decorators_
 
 
 
-## 📄 File Roles
+##  File Roles
 
 | File             | Purpose                                                  |
 |------------------|----------------------------------------------------------|
@@ -39,10 +39,8 @@ _Intro to Flask Project Structure, Routing, and Decorators_
 
 ---
 
-Let me know if you'd like me to regenerate the full `flask_hello.md` with this fix applied, or if you'd prefer to keep moving forward with the next artifact.
 
-
-## 🔁 How `from app import app` Works
+## How `from app import app` Works
 
 ```python
 # microblog.py
@@ -54,13 +52,13 @@ This line means:
 - “Run `init.py`”
 - “Grab the `app = Flask(name)` instance from there”
 
-> 🧠 Two meanings of “app”:
+>  Two meanings of “app”:
 > - `app/` is the folder (a Python package)
 > - `app` is the Flask instance created inside `init.py`
 
 ---
 
-## 🧵 How the App Flows
+##  How the App Flows
 
 ```text
 .flaskenv sets FLASK_APP=microblog.py
@@ -76,7 +74,7 @@ Flask now knows how to respond to requests
 
 ---
 
-## 🧠 What Is a Decorator?
+##  What Is a Decorator?
 
 In `routes.py`, you’ll see:
 
@@ -92,7 +90,7 @@ This uses a decorator: `@app.route('/')`.
 
 
 
-### 🔍 What a Decorator Does
+###  What a Decorator Does
 
 A decorator is a function that wraps another function to change or extend its behavior.
 
@@ -111,13 +109,13 @@ def greet():
 print(greet())  # Outputs: "HELLO"
 ```
 
-> 🧠 Teaching Tip:  
+>  Teaching Tip:  
 > - `@shout` rewrites `greet()` so it returns uppercase text.  
 > - Similarly, `@app.route('/')` rewrites `hello()` so Flask knows to call it when someone visits `/`.
 
 ---
 
-## 🧪 Try It Yourself
+##  Try It Yourself
 
 Add a second route in `routes.py`:
 
@@ -129,35 +127,7 @@ def goodbye():
 
 Then visit `http://localhost:5000/goodbye` in your browser.
 
-## 🧪 Wrapped Example of `@app.route('/')`
-
-Here’s how you might wrap the `hello()` function to log when it’s called—useful for debugging or teaching:
-
-```python
-from flask import Flask
-app = Flask(name)
-
-def log_call(func):
-	def wrapper(*args, **kwargs):
-		print(f"Calling function: {func.name}")
-		return func(*args, **kwargs)
-	return wrapper
-
-@app.route('/')
-@log_call
-def hello():
-	return "Hello, Flask!"
-```
-
-### 🔍 What’s happening here?
-
-- `@app.route('/')` tells Flask: “When someone visits the root URL `/`, call this function.”
-- `@log_call` wraps `hello()` so that every time it’s called, it prints a message first.
-- The order matters: Flask sees the final version of `hello()` after it’s been wrapped.
-
----
-
-## 🧭 Why Does Flask Know to Call `hello()` for `/`?
+##  Why Does Flask Know to Call `hello()` for `/`?
 
 Flask uses the `@app.route()` decorator to register a function as the handler for a specific URL. Internally, it builds a routing table like:
 
@@ -172,17 +142,46 @@ Flask uses the `@app.route()` decorator to register a function as the handler fo
 So when a browser requests `/`, Flask looks up the route and calls the associated function (`hello()` in this case). It doesn’t care what the function is named—it just needs the mapping.
 
 ---
+## Circular imports
 
-## 🔁 Why Does the Function Get “Rewritten”?
+###  What’s the problem?
 
-When you use a decorator like `@log_call`, you're replacing the original function with a new one that adds behavior. This is Python’s way of saying:
+In Flask apps, you often split your code into modules for clarity:
+- `app.py` defines the Flask app instance (`app = Flask(__name__)`)
+- `routes.py` defines the view functions (routes), and needs access to `app`
 
-> “Take `hello()`, pass it to `log_call`, and use the result instead.”
+But here’s the catch:
+- `app.py` needs to import `routes.py` to register the routes
+- `routes.py` needs to import `app` from `app.py` to decorate route functions
 
-So Flask ends up calling the wrapped version of `hello()`—which still returns `"Hello, Flask!"`, but now also logs the call.
----
+This creates a **circular import**:
+```
+app.py → imports routes.py
+routes.py → imports app from app.py
+```
+Python tries to resolve these imports top-down, and when it hits the cycle, one of the modules may be only partially initialized — leading to `ImportError` or `AttributeError`.
 
-## 🧠 Summary
+### Grinberg’s workaround: bottom import
+
+To break the cycle, Grinberg delays the import of `routes` until **after** the `app` object is fully defined:
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+# other setup...
+
+from app import routes  # imported at the bottom
+```
+This way:
+- `app.py` finishes defining `app`
+- Then it imports `routes.py`, which can safely import `app` without triggering a circular mess
+
+###  Why this works
+
+Python modules are only executed once per interpreter session. So by the time `routes.py` imports `app`, the `app` object already exists. It’s a bit like saying: “Let’s finish building the house before inviting guests to walk through it.”
+
+##  Summary
 
 - `microblog.py` is the entry point
 - `app/init.py` creates the Flask app
