@@ -1,7 +1,7 @@
 
 ---
 
-## 🧩 Chapter 2 Summary: Templates in Flask
+##  Chapter 2 Summary: Templates in Flask
 
 ### 🔹 1. Why Templates?
 Miguel starts by showing how embedding raw HTML in Python view functions quickly becomes messy and unscalable. Instead, Flask uses Jinja2 templates to separate logic from presentation.
@@ -11,11 +11,11 @@ He introduces a mock `user` dictionary:
 ```python
 user = {'username': 'Miguel'}
 ```
-🧠 *Teaching Tip*: This models how to isolate front-end development from backend dependencies.
+ *Teaching Tip*: This models how to isolate front-end development from backend dependencies.
 
 ---
 
-## 🐍 `routes.py` (initial version)
+##  `routes.py` (initial version)
 
 ```python
 from flask import Flask
@@ -28,11 +28,11 @@ def index():
 	return f"<html><head><title>Home Page</title></head><body><h1>Hello, {user['username']}!</h1></body></html>"
 ```
 
-🧠 *Annotation*: This hardcoded HTML is fine for prototyping, but it mixes logic and layout—making future changes brittle.
+ *Annotation*: This hardcoded HTML is fine for prototyping, but it mixes logic and layout—making future changes brittle.
 
 ---
 
-## 🗂️ Transition to Templates
+##  Transition to Templates
 
 ### 🔹 3. Create `templates/index.html`
 
@@ -48,13 +48,13 @@ def index():
 </html>
 ```
 
-🧠 *Annotation*:
+ *Annotation*:
 - ` ... ` injects dynamic values.
 - `user.username` accesses nested dictionary keys.
 
 ---
 
-## 🐍 Updated `routes.py` with `render_template`
+##  Updated `routes.py` with `render_template`
 
 ```python
 from flask import render_template
@@ -66,13 +66,13 @@ def index():
 	return render_template('index.html', title='Home', user=user)
 ```
 
-🧠 *Annotation*:
+ *Annotation*:
 - `render_template()` loads the HTML file and fills in placeholders.
 - This separates logic (Python) from layout (HTML).
 
 ---
 
-## 🔄 Conditional Logic in Templates
+##  Conditional Logic in Templates
 
 ```html
 <title>
@@ -84,11 +84,11 @@ def index():
 </title>
 ```
 
-🧠 *Annotation*: `{% ... %}` handles control flow like `if`, `for`, etc.
+ *Annotation*: `{% ... %}` handles control flow like `if`, `for`, etc.
 
 ---
 
-## 🔁 Looping Over Posts
+##  Looping Over Posts
 
 ```python
 posts = [
@@ -103,11 +103,11 @@ posts = [
 {% endfor %}
 ```
 
-🧠 *Annotation*: This models dynamic content rendering—students can experiment by adding more posts.
+ *Annotation*: This models dynamic content rendering—students can experiment by adding more posts.
 
 ---
 
-## 🧬 Template Inheritance
+##  Template Inheritance
 
 ### 🔹 `base.html`
 
@@ -138,7 +138,7 @@ posts = [
 {% endblock %}
 ```
 
-🧠 *Annotation*: This models DRY principles—shared layout lives in `base.html`, while each page injects its own content.
+ *Annotation*: This models DRY principles—shared layout lives in `base.html`, while each page injects its own content.
 
 ---
 
