@@ -60,6 +60,8 @@ app/templates/base.html: User profile template
             {% endif %}
         </div>
 ``` 
+![Users table schema](https://raw.githubusercontent.com/tunafish304/microblog/refs/heads/main/docs/images/chapter6_photo_1.png)
+
 Give the application a try now. Clicking on the Profile link at the top should take you to your own user page. At this point there are no links that will take you to the profile page of other users, but if you want to access those pages you can type the URL by hand in the browser's address bar. For example, if you have a user named "john" registered on your application, you can view the corresponding user profile by typing http://localhost:5000/user/john in the address bar.
 
 ---
@@ -157,6 +159,7 @@ app/templates/user.html: User avatars in posts
     {% endfor %}
 {% endblock %}
 ```
+![Users table schema](https://raw.githubusercontent.com/tunafish304/microblog/refs/heads/main/docs/images/chapter6_photo_2.png)
 
 ## Using Jinja Sub-Templates
 
@@ -285,7 +288,7 @@ This gives you a simple way to track user activity and display it on their profi
 
 ### Code
 
-Take a look at one solution. In `app/routes.py`, add this near the top:
+Take a look at the solution. In `app/routes.py`, add this near the top:
 
 ```python
 from datetime import datetime
@@ -302,6 +305,7 @@ def before_request():
 - The change is committed to the database immediately
 
 ---
+![Users table schema](https://raw.githubusercontent.com/tunafish304/microblog/refs/heads/main/docs/images/chapter6_photo_3.png)
 
 ## Profile Editor
 
@@ -367,7 +371,7 @@ In `app/templates/edit_profile.html`, add:
 In `app/routes.py`, add:
 
 ```python
-app/routes.py: Edit profile view function
+#app/routes.py: Edit profile view function
 
 from app.forms import EditProfileForm
 
@@ -388,6 +392,8 @@ def edit_profile():
                            form=form)
 ```
 
+![Users table schema](https://raw.githubusercontent.com/tunafish304/microblog/refs/heads/main/docs/images/chapter6_photo_4.png)
+
 ---
 To make it easy for users to access the profile editor page, you can add a link in their profile page:
 
@@ -398,6 +404,6 @@ To make it easy for users to access the profile editor page, you can add a link 
                 <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
                 {% endif %}
 ```
+Pay attention to the clever conditional I'm using to make sure that the Edit link appears when you are viewing your own profile, but not when you are viewing the profile of someone else.
 
-
-
+![Users table schema](https://raw.githubusercontent.com/tunafish304/microblog/refs/heads/main/docs/images/chapter6_photo_5.png)
