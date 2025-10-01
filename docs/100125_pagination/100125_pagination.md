@@ -159,7 +159,7 @@ I can now use this sub-template to render blog posts in the home and explore pag
     {% endfor %}
     ...
 ```
-![Users table schema](https://raw.githubusercontent.com/tunafish304/microblog/refs/heads/main/docs/images/chapter9_photo_1.png)
+![Users table schema](https://raw.githubusercontent.com/tunafish304/microblog/refs/heads/main/docs/images/chapter9_photo1.png)
 
 ## Pagination of blog posts
 
@@ -275,7 +275,7 @@ The pagination links are being set to the index.html template, so now let's rend
     {% endif %}
     ...
 ```
-![Users table schema](https://raw.githubusercontent.com/tunafish304/microblog/refs/heads/main/docs/images/chapter9_photo_2.png)
+![Users table schema](https://raw.githubusercontent.com/tunafish304/microblog/refs/heads/main/docs/images/chapter9_photo2.png)
 
 ## Pagination in the user profile
 
